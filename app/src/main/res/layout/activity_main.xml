@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/parentLayout"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.ralo.luka.polaris.MainActivity">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+                <com.devadvance.circularseekbar.CircularSeekBar
+                    android:id="@+id/circularSeekBar1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/back"
+                    app:circle_color="@color/colorAccent"
+                    app:circle_progress_color="@color/colorAccent"
+                    app:circle_stroke_width="3dp"
+                    app:end_angle="90"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:pointer_color="@color/colorPrimary"
+                    app:pointer_halo_width="0dp"
+                    app:start_angle="90" />
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    app:layout_constraintDimensionRatio="1:1"
+                    android:gravity="center_vertical|center_horizontal"
+                    app:layout_constraintBottom_toBottomOf="@id/circularSeekBar1"
+                    app:layout_constraintLeft_toLeftOf="@id/circularSeekBar1"
+                    app:layout_constraintRight_toRightOf="@id/circularSeekBar1"
+                    app:layout_constraintTop_toTopOf="@id/circularSeekBar1"
+                    android:src="@drawable/north"
+                    android:id="@+id/compass"/>
+
+                <TextView
+                    android:id="@+id/clockPosition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/circularSeekBar1"
+                    app:layout_constraintLeft_toLeftOf="@id/circularSeekBar1"
+                    app:layout_constraintRight_toRightOf="@id/circularSeekBar1"
+                    app:layout_constraintTop_toTopOf="@id/circularSeekBar1" />
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="end">
+
+                <TextView
+                    android:id="@+id/location"
+                    android:paddingLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"/>
+
+                <TextView
+                    android:id="@+id/dateAndTime"
+                    android:textSize="20sp"
+                    android:layout_weight="1"
+                    android:paddingLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"/>
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="end"
+                    android:layout_margin="20dp"
+                    android:alpha="0.5"
+                    android:src="@drawable/pin"
+                    android:onClick="onClickDone"/>
+
+        </LinearLayout>
+
+
+</LinearLayout>
