@@ -35,23 +35,30 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
+    @BindView(R.id.dateAndTime) TextView dateAndTimeTextView;
+    @BindView(R.id.compass) ImageView image;
+    @BindView(R.id.location) TextView locationTextView;
+    @BindView(R.id.clockPosition) TextView clockPosition;
+    @BindView(R.id.circularSeekBar1)  CircularSeekBar seekbar;
+
     private SensorManager sensorManager;
-    private ImageView image;
-    private float currentDegree = 0f;
+
     LocationManager locationManager;
     LocationListener locationListener;
-    CircularSeekBar seekbar;
+
     static Calendar cal3;
+
+    int hours;
     static double currentLongitude = 21.47;
     static double currentLatitude = 0;
     static int currentAltitude = 0;
-    int hours;
-    TextView dateAndTimeTextView;
-    TextView locationTextView;
-    TextView clockPosition;
+    private float currentDegree = 0f;
+
     String formatted;
     SharedPreferences settings;
     final String PREFS_NAME = "MyPrefsFile";
@@ -62,14 +69,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-
-        image=findViewById(R.id.compass);
         sensorManager=(SensorManager)getSystemService(SENSOR_SERVICE);
-        locationTextView = findViewById(R.id.location);
         settings = getSharedPreferences(PREFS_NAME, 0);
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        dateAndTimeTextView = findViewById(R.id.dateAndTime);
         locationTextView.setText(savedLocationString());
 
         isProviderEnabled();
@@ -77,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         getCurrentLocation();
 
 
-        seekbar = findViewById(R.id.circularSeekBar1);
         cal3 = Calendar.getInstance();
 
         seekbarSettings();
@@ -132,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         checkPermissions();
 
     }
-
 
 
     public void seekbarSettings(){
@@ -250,6 +252,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+
     @SuppressLint("DefaultLocale")
     public void runEverySecond() {
         Date date = new Date();
@@ -264,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
         int minutes = tt % 60;
         formatted = String.format("%02d", minutes);
-        clockPosition = findViewById(R.id.clockPosition);
+
         String setText = ""+ hours + ":" + formatted;
         clockPosition.setText(setText);
 
